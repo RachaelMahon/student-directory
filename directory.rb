@@ -19,18 +19,15 @@ def print_header
     puts "______________"
 end
 
-def print(students)
-  puts "To print students with names beginning with a letter, type that letter"
-  letter = gets.chomp
-  less_than_12 = 0
-  students.each do |student|
-    if student[:name].length < 12
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    correct_initial += 1
-  end
+def print (students)
+  index = 0
+  while index < students.length
+    puts "#{index+1}. #{students[index][:name]} (#{students[index][:cohort]} cohort)"
+    index += 1
+    end
 end
-puts "You have selected #{less_than_12} students beginning with #{letter} of a possible #{students.count} students!"
-end
+
+
 
 def print_footer(students)
   puts "Overall we have #{students.count} great students"
