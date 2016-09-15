@@ -20,9 +20,16 @@ def print_header
 end
 
 def print(students)
-  students.each_with_index do |student, index|
-    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+  puts "To print students with names beginning with a letter, type that letter"
+  letter = gets.chomp
+  correct_initial = 0
+  students.each do |student|
+    if student[:name][0] == letter
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    correct_initial += 1
   end
+end
+puts "You have selected #{correct_initial} students beginning with #{letter} of a possible #{students.count} students!"
 end
 
 def print_footer(students)
@@ -35,4 +42,3 @@ students = input_students
 print_header
 print(students)
 print_footer(students)
-input_students
