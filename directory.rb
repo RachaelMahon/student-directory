@@ -22,14 +22,14 @@ end
 def print(students)
   puts "To print students with names beginning with a letter, type that letter"
   letter = gets.chomp
-  correct_initial = 0
+  less_than_12 = 0
   students.each do |student|
-    if student[:name][0] == letter
+    if student[:name].length < 12
     puts "#{student[:name]} (#{student[:cohort]} cohort)"
     correct_initial += 1
   end
 end
-puts "You have selected #{correct_initial} students beginning with #{letter} of a possible #{students.count} students!"
+puts "You have selected #{less_than_12} students beginning with #{letter} of a possible #{students.count} students!"
 end
 
 def print_footer(students)
