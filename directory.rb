@@ -37,6 +37,8 @@ def input_students
   end
     end
 
+   puts "The students of Unreal Academy".center(50)
+   puts "-------------------------------------------------".center(50)
 
   idx = 0
   while idx < students.to_a.length
