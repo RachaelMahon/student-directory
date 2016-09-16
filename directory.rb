@@ -27,13 +27,17 @@ def input_students
   name = gets.chomp
   if !name.empty?
     puts "Cohort: "
-    cohort = gets.chomp
+    cohort = gets.chomp.capitalize.to_sym
+    cohort.empty? ? cohort = :November : cohort
     puts "Hobbies: "
     hobbies = gets.chomp
+    hobbies.empty? ? hobbies = "None" : hobbies
     puts "Country of birth?: "
     country_of_birth = gets.chomp
+    country_of_birth.empty? ? country_of_birth = "Unknown" : country_of_birth
     puts "Height: "
     height = gets.chomp
+    height.empty? ? height = "Unknown" : height
   end
     end
 
