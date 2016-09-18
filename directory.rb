@@ -24,6 +24,7 @@ def load_students(filename = "students.csv")
    populate_students(name, cohort.to_sym)
   end
   file.close
+  puts "Loaded!"
 end
 
 def print_student_list
@@ -92,6 +93,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "Saved!"
 end
 
 
