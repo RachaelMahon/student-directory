@@ -1,17 +1,30 @@
 @students = []
 
+def populate_students(name, cohort)
+  @students << {name: name, cohort: :november}
+end
+
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   name = STDIN.gets.chomp
   while !name.empty? do
-    @students << {name: name, cohort: :november}
+    cohort = :november
+    populate_students(name, cohort)
     puts "Now we have #{@students.count} students"
     name = STDIN.gets.chomp
   end
 end
 
-
+def load_students(filename = "students.csv")
+  file = File.open("students.csv", "r")
+  file.readlines.each do |line|
+  name, cohort = line.chomp.split(',')
+   populate_students(name, cohort.to_sym)
+  end
+  file.close
+end
 
 def print_student_list
   @students.each do |student|
@@ -81,14 +94,7 @@ def save_students
   file.close
 end
 
-def load_students(filename = "students.csv")
-  file = File.open("students.csv", "r")
-  file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
-  end
-  file.close
-end
+
 
 def try_load_students
   filename = ARGV.first
