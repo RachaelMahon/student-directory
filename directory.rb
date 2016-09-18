@@ -1,3 +1,5 @@
+require "CSV"
+
 @students = []
 
 def populate_students(name, cohort)
@@ -18,14 +20,13 @@ def input_students
 end
 
 def load_students(filename = "students.csv")
-  File.open(ask_filename, "r") do |file|
-  file.readlines.each do |line|
-  name, cohort = line.chomp.split(',')
+  CSV.foreach(ask_filename) do |line|
+  name, cohort = line
    populate_students(name, cohort.to_sym)
   end
   puts "Loaded!"
 end
-end
+
 
 def print_student_list
   @students.each do |student|
@@ -91,11 +92,9 @@ def process(selection)
 
 
 def save_students
-  File.open(ask_filename, "w") do |file|
+  CSV.open(ask_filename, "a+") do |csv|
   @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+    csv << [student[:name], student[:cohort]]
   end
   puts "Saved!"
 end
