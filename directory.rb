@@ -4,7 +4,10 @@ def input_students
   puts "To finish, hit return twice"
   puts "Student name?:"
   name = gets.chomp
-  name = name.gsub!("/n", "")
+  while name == ""
+    puts "Please enter at least one student"
+    name = gets.chomp
+  end
   puts "Cohort: "
   cohort = gets.chomp
   puts "Hobbies?: "
@@ -17,7 +20,7 @@ def input_students
 
 
   students = []
-  while !name.empty? do
+  while !name.empty?  do
   students << {name: name, cohort: cohort, hobbies: hobbies, country_of_birth: country_of_birth, height: height}
   if students.to_a.count == 1
       puts "You have entered #{students.count} student!"
@@ -40,8 +43,9 @@ def input_students
     puts "Height: "
     height = gets.chomp
     height.empty? ? height = "Unknown" : height
+  else "Must input at least one student"
   end
-    end
+
 
     #students = students.sort_by {|k| k['cohort']}
 
@@ -68,6 +72,7 @@ def input_students
     idx += 1
   end
 
+
   #if selection.empty?
   #  print_selection = []
   #  correct_cohort = students.delete_if{ |k, v| v != selection}
@@ -87,10 +92,13 @@ def input_students
   #    idx += 1
   #  end
   #  end
-   puts print_selection
+
+puts print_selection
+
 end
 
 
 
+end
 
 input_students
