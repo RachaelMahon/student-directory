@@ -17,16 +17,14 @@ def input_students
   end
 end
 
-def load_students
-  puts "What file do you want to get these from?"
-  file_name = gets.chomp
-  file = File.open(file_name, "r")
+def load_students(filename = "students.csv")
+  File.open(ask_filename, "r") do |file|
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
    populate_students(name, cohort.to_sym)
   end
-  file.close
   puts "Loaded!"
+end
 end
 
 def print_student_list
@@ -54,8 +52,8 @@ def print_footer
   def print_menu
     puts "1. Input the students"
     puts "2. Show the students"
-    puts "3. Save the list to a specified file like students.csv "
-    puts "4. Load the list from a specified file like students.csv"
+    puts "3. Save the list to students.csv"
+    puts "4. Load the list from students.csv"
     puts "9. Exit"
   end
 
@@ -86,18 +84,21 @@ def process(selection)
     end
   end
 
+  def ask_filename
+     puts "Please enter the filename:"
+     gets.chomp
+	 end
+
 
 def save_students
-  puts "What file would you like to save this to?"
-  file_name = gets.chomp
-  file = File.new(file_name, "w")
+  File.open(ask_filename, "w") do |file|
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
-  file.close
   puts "Saved!"
+end
 end
 
 
