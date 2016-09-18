@@ -4,6 +4,7 @@ def input_students
   puts "To finish, hit return twice"
   puts "Student name?:"
   name = gets.chomp
+  name = name.gsub!("/n", "")
   puts "Cohort: "
   cohort = gets.chomp
   puts "Hobbies?: "
@@ -12,6 +13,7 @@ def input_students
   country_of_birth = gets.chomp
   puts "Height?:"
   height = gets.chomp
+
 
 
   students = []
